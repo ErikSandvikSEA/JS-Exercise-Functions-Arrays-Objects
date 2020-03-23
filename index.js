@@ -147,8 +147,13 @@ function getName(newObject) {
  * passing in [ 'orange', 'grape', 'apple', 'banana', 'mango' ] as the argument,
  * the returned value should be: 2.
 */
-function appleIndex(/* code here */) {
+function appleIndex(newArray) {
   /* code here */
+  for (let i = 0; i < newArray.length; i++){
+    if (newArray[i] === 'apple'){
+      return i
+    }
+  }
 }
 
 /**
@@ -166,8 +171,16 @@ function appleIndex(/* code here */) {
  * passing in [ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ] as the argument,
  * the returned value should be: [ false, true, false, false, true, false ].
 */
-function isItAnApple(/* code here */) {
+function isItAnApple(stringArray) {
   /* code here */
+  let newStringArray = [];
+  for (let b = 0; b < stringArray.length; b++){
+    if (stringArray[b] === 'apple'){
+      newStringArray[b] = true
+    } else {
+      newStringArray[b] = false;
+    }
+  } return newStringArray
 }
 
 
@@ -226,6 +239,7 @@ function get3rdCar(inventory) {
 */
 function getCarInfoByIndex(inventory, index) {
   /* code here */
+  return `This is a ${inventory[index].car_make} ${inventory[index].car_model}`
 }
 
 /**
@@ -239,8 +253,10 @@ function getCarInfoByIndex(inventory, index) {
  * For example, if getLastCarInfo is invoked passing the inventory inside /data/inventory.js,
  * it will return `This is a Lincoln Town Car`.
 */
-function getLastCarInfo(/* code here */) {
+function getLastCarInfo(inventoryArray) {
   /* code here */
+ let lastCar = inventoryArray[inventoryArray.length - 1];
+ return `This is a ${lastCar.car_make} ${lastCar.car_model}`
 }
 
 /**
@@ -252,8 +268,12 @@ function getLastCarInfo(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-function getModelYears(/* code here */) {
+function getModelYears(sampleInventoryArray) {
   /* code here */
+  let modelYearArray = [];
+  for (let q = 0; q < sampleInventoryArray.length; q++){
+    modelYearArray.push(sampleInventoryArray[q].car_year);
+  } return modelYearArray
 }
 
 /**
