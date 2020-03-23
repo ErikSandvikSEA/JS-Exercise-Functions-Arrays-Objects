@@ -103,8 +103,14 @@ function temperatureInF(degrees, units) {
  *   email: "leia@leia.com",
  * }
 */
-function makePersonObject(/* code here */) {
+function makePersonObject(id, name, email) {
   /* code here */
+  const person = {
+    id: id,
+    name: name,
+    email: email,
+  }
+  return person
 }
 
 /**
@@ -120,9 +126,10 @@ function makePersonObject(/* code here */) {
  * passing { id: 1, name: 'Leia', email: 'leia@leia.com` } as the argument,
  * the returned value should look like `Hello, my name is Leia`.
 */
-function getName(/* code here */) {
+function getName(newObject) {
   /* code here */
-}
+  return `Hello, my name is ${newObject.name}`
+  }
 
 
 /**
