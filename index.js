@@ -35,9 +35,11 @@ function addNumbers(num1, num2) {
  * the returned value should look like: 'Goodbye, Andy. Have a great day.'
  * 
 */
-function sayGoodbye(/* code here */) {
+function sayGoodbye(name) {
+  return `Goodbye, ${name}. Have a great day.`
   /* code here */
 }
+// console.log(sayGoodbye('Devin'));
 
 /**
  * ### Challenge `temperatureCtoF`
@@ -53,8 +55,9 @@ function sayGoodbye(/* code here */) {
  * Hint 1: The formula for converting celsius to fahrenheit is t*9/5 + 32 where t is the temperature in celsius.
  * Hint 2: There is a very easy way to round numbers in JS. Do a google search to find out how. 
 */
-function temperatureCtoF(/* code here */) {
+function temperatureCtoF(t) {
   /* code here */
+  return Math.round(t* (9/5) + 32);
 }
 
 /**
@@ -74,8 +77,13 @@ function temperatureCtoF(/* code here */) {
  * 
  * Hint: You can call your `temperatureCtoF` function from inside `temperatureInF`.
 */
-function temperatureInF(/* code here */) {
+function temperatureInF(degrees, units) {
   /* code here */
+   if (units === 'F') {
+    return `${Math.round(degrees)}${units}`
+  } else if (units === 'C'){
+    return `${temperatureCtoF(degrees)}F`;
+  }
 }
 
 
@@ -95,8 +103,14 @@ function temperatureInF(/* code here */) {
  *   email: "leia@leia.com",
  * }
 */
-function makePersonObject(/* code here */) {
+function makePersonObject(id, name, email) {
   /* code here */
+  const person = {
+    id: id,
+    name: name,
+    email: email,
+  }
+  return person
 }
 
 /**
@@ -112,9 +126,10 @@ function makePersonObject(/* code here */) {
  * passing { id: 1, name: 'Leia', email: 'leia@leia.com` } as the argument,
  * the returned value should look like `Hello, my name is Leia`.
 */
-function getName(/* code here */) {
+function getName(newObject) {
   /* code here */
-}
+  return `Hello, my name is ${newObject.name}`
+  }
 
 
 /**
@@ -132,8 +147,13 @@ function getName(/* code here */) {
  * passing in [ 'orange', 'grape', 'apple', 'banana', 'mango' ] as the argument,
  * the returned value should be: 2.
 */
-function appleIndex(/* code here */) {
+function appleIndex(newArray) {
   /* code here */
+  for (let i = 0; i < newArray.length; i++){
+    if (newArray[i] === 'apple'){
+      return i
+    }
+  }
 }
 
 /**
@@ -151,8 +171,16 @@ function appleIndex(/* code here */) {
  * passing in [ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ] as the argument,
  * the returned value should be: [ false, true, false, false, true, false ].
 */
-function isItAnApple(/* code here */) {
+function isItAnApple(stringArray) {
   /* code here */
+  let newStringArray = [];
+  for (let b = 0; b < stringArray.length; b++){
+    if (stringArray[b] === 'apple'){
+      newStringArray[b] = true
+    } else {
+      newStringArray[b] = false;
+    }
+  } return newStringArray
 }
 
 
@@ -211,6 +239,7 @@ function get3rdCar(inventory) {
 */
 function getCarInfoByIndex(inventory, index) {
   /* code here */
+  return `This is a ${inventory[index].car_make} ${inventory[index].car_model}`
 }
 
 /**
@@ -224,8 +253,10 @@ function getCarInfoByIndex(inventory, index) {
  * For example, if getLastCarInfo is invoked passing the inventory inside /data/inventory.js,
  * it will return `This is a Lincoln Town Car`.
 */
-function getLastCarInfo(/* code here */) {
+function getLastCarInfo(inventoryArray) {
   /* code here */
+ let lastCar = inventoryArray[inventoryArray.length - 1];
+ return `This is a ${lastCar.car_make} ${lastCar.car_model}`
 }
 
 /**
@@ -237,8 +268,12 @@ function getLastCarInfo(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-function getModelYears(/* code here */) {
+function getModelYears(sampleInventoryArray) {
   /* code here */
+  let modelYearArray = [];
+  for (let q = 0; q < sampleInventoryArray.length; q++){
+    modelYearArray.push(sampleInventoryArray[q].car_year);
+  } return modelYearArray
 }
 
 /**
@@ -255,8 +290,11 @@ function getModelYears(/* code here */) {
  * For example, if getCarInfoById is invoked with the inventory and the number 1,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoById(/* code here */) {
+function getCarInfoById(carArray, idNumber) {
   /* code here */
+  let carMake = carArray[idNumber - 1].car_make;
+  let carModel = carArray[idNumber - 1].car_model;
+  return `This is a ${carMake} ${carModel}`
 }
 
 /**
@@ -273,9 +311,15 @@ function getCarInfoById(/* code here */) {
  * with a `car_year` which is at most the given desired max year,
  * in the same order as they appear in the original inventory.
 */
-function getOlderCars(/* code here */) {
-  /* code here */
+function getOlderCars(carArray, maxYear){ 
+  let maxYearArray = [];
+  for(let i = 0; i < carArray.length; i++){
+    if (carArray[i].car_year <= maxYear){
+      maxYearArray.push(carArray[i])
+    } 
+  } return maxYearArray
 }
+
 
 /**
  * ### Challenge `getGermanCars`
@@ -290,8 +334,13 @@ function getOlderCars(/* code here */) {
  * made by either `Audi` or `Mercedes-Benz` or `Volkswagen` or `BMW`,
  * in the same order as they appear in the original inventory.
 */
-function getGermanCars(/* code here */) {
-  /* code here */
+function getGermanCars(carArray){
+  let germanArray = [];
+  for(let i = 0; i < carArray.length; i++){
+    if (carArray[i]['car_make'] === "Audi"||carArray[i]['car_make'] ==="Mercedes-Benz"||carArray[i]['car_make'] ==="Volkswagen"||carArray[i]['car_make'] ==="BMW"){
+      germanArray.push(carArray[i])
+    } 
+  } return (germanArray)
 }
 
 /**
@@ -307,8 +356,18 @@ function getGermanCars(/* code here */) {
  *         (1) causes the odometer in the object to be increased by the distance,
  *         (2) returns the updated value of the `odometer`.
 */
-function carMaker(/* code here */) {
+function carMaker(odometer) {
   /* code here */
+  
+  let drivenCar = {
+    odometer: odometer,
+    drive: function (distance) {
+     this.odometer = distance + this.odometer;
+      return this.odometer
+    }
+  }
+   
+  return drivenCar
 }
 
 /// ////// END OF CHALLENGE /////////
